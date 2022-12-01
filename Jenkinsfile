@@ -15,5 +15,8 @@ node {
 		stage('cpu analysis'){
 			'lscpu'
 		}
+        stage('statistics of runtime'){
+            'uptime'
+        }
 	}
 }
