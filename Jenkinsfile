@@ -1,30 +1,19 @@
-pipeline{
-    agent any
-    stages{
-        stage('1-repoClone'){
-            steps{
-                sh 'checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '0d2811ba-62ff-4728-bd63-58348c041f3d', url: 'https://github.com/Richard-Tass/team4-git-day1.git']]])'
-            }
-        }
-        stage('2-cpuAnalysis'){
-            steps{
-                sh 'lscpu'
-            }
-        }
-        stage('3-memoryCheck'){
-            steps{
-                sh 'free -g'
-            }
-        }
-        stage('4-os-stats'){
-            steps{
-                sh 'cat /etc/os-release'
-            }
-        }
-        stage('welcome'){
-            steps{
-                echo "hello groovy"
-            }
-        }
-    }
+node {
+	stages{
+		stage('1-system update'){
+			'system apt update -y'
+		}
+		stage('2-disk free space'){
+			'df -h'
+		}
+		stage('3-real time Linux processes'){
+			'top'
+		}
+		stage('snapshot of running processes'){
+			'ps -ef'
+		}
+		stage('cpu analysis'){
+			'lscpu'
+		}
+	}
 }
